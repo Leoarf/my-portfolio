@@ -9,7 +9,7 @@ import { AboutGoals } from './about/AboutGoals';
 
 export default function About() {
   return (
-    <section id="sobre" className="relative py-20">
+    <section id="about" className="relative py-20">
       {/* Minimum decorative elements for this section */}
       <div className="absolute inset-0 pointer-events-none">
         {/* A subtle circle to mark the section */}
