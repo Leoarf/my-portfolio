@@ -5,7 +5,7 @@ export function ScrollIndicator() {
     <motion.div
       animate={{ y: [0, 6, 0] }}
       transition={{ repeat: Infinity, duration: 2 }}
-      className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10"
+      className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-10"
     >
       <div className="flex flex-col items-center">
         <span className="text-xs text-gray-500 dark:text-gray-400 mb-2">

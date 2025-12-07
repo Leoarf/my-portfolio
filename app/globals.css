@@ -8,7 +8,23 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Dark mode - contrast enhancements */
+.dark .bg-gray-900 {
+  background-color: #111827;
+}
+
+.dark .bg-gray-800 {
+  background-color: #1f2937;
 }
 
 /* Animations */
@@ -32,6 +48,27 @@ html {
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
 /* Utility classes */
 .animate-float {
   animation: float 3s ease-in-out infinite;
@@ -41,32 +78,29 @@ html {
   animation: pulse-slow 2s ease-in-out infinite;
 }
 
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
 /* Delays for animations */
 .delay-100 {
   animation-delay: 100ms;
 }
+
 .delay-200 {
   animation-delay: 200ms;
 }
+
 .delay-300 {
   animation-delay: 300ms;
 }
+
 .delay-1000 {
   animation-delay: 1000ms;
-}
-
-/* Dark mode - contrast enhancements */
-.dark .bg-gray-900 {
-  background-color: #111827;
-}
-
-.dark .bg-gray-800 {
-  background-color: #1f2937;
-}
-
-/* Smooth transitions */
-* {
-  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Responsiveness */
