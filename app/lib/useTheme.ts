@@ -1,12 +1,21 @@
 'use client';
 
-import { useState, useLayoutEffect } from 'react';
+import { useState, useLayoutEffect, useEffect } from 'react';
 
 export function useTheme() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
-  // useLayoutEffect for synchronous synchronization (avoids flash)
+  // Update the theme in the document.
+  const updateTheme = (newTheme: 'light' | 'dark') => {
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
+  // Initializes the theme
   useLayoutEffect(() => {
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia(
@@ -14,30 +23,52 @@ export function useTheme() {
     ).matches;
     const initialTheme =
       saved === 'dark' || (!saved && prefersDark) ? 'dark' : 'light';
-    // Updates the state after the initial rendering.
+    // Synchronizes immediately
+    updateTheme(initialTheme);
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(initialTheme);
     setMounted(true);
-    // Applies the class to the document.
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-    // Listen to system preference change
+  }, []);
+
+  // Synchronizes between tabs/components
+  useEffect(() => {
+    if (!mounted) return;
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'theme') {
+        const newTheme = e.newValue as 'light' | 'dark';
+        setTheme(newTheme);
+        updateTheme(newTheme);
+      }
+    };
+    // Listen for changes in system preferences.
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handler = (e: MediaQueryListEvent) => {
+    const handleSystemChange = (e: MediaQueryListEvent) => {
       if (!localStorage.getItem('theme')) {
         const newTheme = e.matches ? 'dark' : 'light';
         setTheme(newTheme);
-        document.documentElement.classList.toggle('dark', newTheme === 'dark');
+        updateTheme(newTheme);
       }
     };
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, []);
+    window.addEventListener('storage', handleStorageChange);
+    mediaQuery.addEventListener('change', handleSystemChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      mediaQuery.removeEventListener('change', handleSystemChange);
+    };
+  }, [mounted]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    updateTheme(newTheme);
+    // Triggers an event to synchronize other tabs
+    window.dispatchEvent(
+      new StorageEvent('storage', {
+        key: 'theme',
+        newValue: newTheme,
+      })
+    );
   };
 
   return { theme, toggleTheme, mounted };
