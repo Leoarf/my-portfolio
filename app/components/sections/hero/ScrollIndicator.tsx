@@ -1,6 +1,22 @@
+'use client';
+
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export function ScrollIndicator() {
+  const { language } = useLanguage();
+
+  const texts = {
+    pt: {
+      scrollText: 'Role para ver mais',
+    },
+    en: {
+      scrollText: 'Scroll to see more',
+    },
+  };
+
+  const t = texts[language];
+
   return (
     <motion.div
       animate={{ y: [0, 6, 0] }}
@@ -9,7 +25,7 @@ export function ScrollIndicator() {
     >
       <div className="flex flex-col items-center">
         <span className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-          Role para ver mais
+          {t.scrollText}
         </span>
         <div className="w-5 h-8 border border-gray-300 dark:border-gray-600 rounded-full flex justify-center">
           <motion.div
