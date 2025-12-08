@@ -1,8 +1,19 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Code } from 'lucide-react';
-import { skillsHighlights } from './constants';
+import { useLanguage } from '../../../context/LanguageContext';
+import { getSkillsHighlights } from './constants';
 
 export function AboutSkills() {
+  const { language } = useLanguage();
+  const skillsHighlights = getSkillsHighlights(language);
+
+  const titles = {
+    pt: 'O Que Me Diferencia',
+    en: 'What Sets Me Apart',
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -12,8 +23,8 @@ export function AboutSkills() {
       className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg"
     >
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-        <Code className="h-5 w-5 text-blue-600 dark:text-blue-400" />O Que Me
-        Diferencia
+        <Code className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+        {titles[language]}
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {skillsHighlights.map((item, index) => (

@@ -1,8 +1,19 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Briefcase } from 'lucide-react';
-import { experiences } from './constants';
+import { useLanguage } from '../../../context/LanguageContext';
+import { getExperiences } from './constants';
 
 export function AboutExperience() {
+  const { language } = useLanguage();
+  const experiences = getExperiences(language);
+
+  const titles = {
+    pt: 'Experiência Profissional',
+    en: 'Professional Experience',
+  };
+
   const getColorClasses = (color: string) => {
     switch (color) {
       case 'blue':
@@ -36,7 +47,7 @@ export function AboutExperience() {
     >
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
         <Briefcase className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-        Experiência Profissional
+        {titles[language]}
       </h3>
       <div className="space-y-6">
         {experiences.map((exp, index) => {

@@ -1,8 +1,19 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { GraduationCap } from 'lucide-react';
-import { education } from './constants';
+import { useLanguage } from '../../../context/LanguageContext';
+import { getEducation } from './constants';
 
 export function AboutEducation() {
+  const { language } = useLanguage();
+  const education = getEducation(language);
+
+  const titles = {
+    pt: 'Educação & Formação',
+    en: 'Education & Training',
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -13,7 +24,7 @@ export function AboutEducation() {
     >
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
         <GraduationCap className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-        Educação & Formação
+        {titles[language]}
       </h3>
       <div className="space-y-6">
         {education.map((item, index) => (
