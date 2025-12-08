@@ -3,8 +3,26 @@
 import { ProjectsHeader } from './projects/ProjectsHeader';
 import { ProjectsGrid } from './projects/ProjectsGrid';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Projects() {
+  const { language } = useLanguage();
+
+  const texts = {
+    pt: {
+      paragraph1:
+        'Estou constantemente trabalhando em novos projetos para expandir meu portfólio e aprimorar minhas habilidades.',
+      highlighted: 'Em breve mais projetos serão adicionados!',
+    },
+    en: {
+      paragraph1:
+        'I am constantly working on new projects to expand my portfolio and improve my skills.',
+      highlighted: 'More projects will be added soon!',
+    },
+  };
+
+  const t = texts[language];
+
   return (
     <section id="projects" className="relative py-20">
       {/* Subtle decorative elements */}
@@ -24,11 +42,10 @@ export default function Projects() {
           className="mt-16 text-center"
         >
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Estou constantemente trabalhando em novos projetos para expandir meu
-            portfólio e aprimorar minhas habilidades.
+            {t.paragraph1}
             <span className="font-semibold text-blue-600 dark:text-blue-400">
               {' '}
-              Em breve mais projetos serão adicionados!
+              {t.highlighted}
             </span>
           </p>
         </motion.div>

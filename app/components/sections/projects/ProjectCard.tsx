@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, ImageOff } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
-import { Project, techIcons } from './constants';
+import { useLanguage } from '../../../context/LanguageContext';
+import { getStatusText, getButtonTexts, techIcons } from './constants';
+import { Project } from './constants';
 
 interface ProjectCardProps {
   project: Project;
@@ -12,8 +14,12 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
+  const { language } = useLanguage();
   const [imageError, setImageError] = useState(false);
   const isPlaceholder = project.status !== 'completed';
+
+  const buttonTexts = getButtonTexts(language);
+  const statusText = getStatusText(project.status, language);
 
   const handleImageError = () => {
     setImageError(true);
@@ -33,14 +39,20 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <div className="w-full h-full flex flex-col items-center justify-center">
             <ImageOff className="h-12 w-12 text-gray-400 dark:text-gray-600 mb-2" />
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              Preview não disponível
+              {language === 'pt'
+                ? 'Preview não disponível'
+                : 'Preview not available'}
             </span>
           </div>
         ) : (
           <>
             <Image
               src={project.imageUrl}
-              alt={`Screenshot do projeto ${project.title}`}
+              alt={
+                language === 'pt'
+                  ? `Screenshot do projeto ${project.title}`
+                  : `Project screenshot of ${project.title}`
+              }
               fill
               className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
               onError={handleImageError}
@@ -57,7 +69,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         {project.featured && (
           <div className="absolute top-3 left-3 z-10">
             <span className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full">
-              Destaque
+              {language === 'pt' ? 'Destaque' : 'Featured'}
             </span>
           </div>
         )}
@@ -71,11 +83,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
             }`}
           >
-            {project.status === 'completed'
-              ? 'Concluído'
-              : project.status === 'in-progress'
-              ? 'Em Desenvolvimento'
-              : 'Planejado'}
+            {statusText}
           </span>
         </div>
       </div>
@@ -115,7 +123,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             onClick={(e) => isPlaceholder && e.preventDefault()}
           >
             <Github className="h-4 w-4" />
-            <span className="font-medium">GitHub</span>
+            <span className="font-medium">{buttonTexts.github}</span>
           </a>
           <a
             href={project.liveUrl}
@@ -129,7 +137,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             onClick={(e) => isPlaceholder && e.preventDefault()}
           >
             <ExternalLink className="h-4 w-4" />
-            <span className="font-medium">Live Demo</span>
+            <span className="font-medium">{buttonTexts.liveDemo}</span>
           </a>
         </div>
       </div>

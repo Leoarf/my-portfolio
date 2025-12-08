@@ -1,10 +1,14 @@
 'use client';
 
-import { projects } from './constants';
+import { useLanguage } from '../../../context/LanguageContext';
+import { getProjects } from './constants';
 import { ProjectCard } from './ProjectCard';
 import { ProjectPlaceholder } from './ProjectPlaceholder';
 
 export function ProjectsGrid() {
+  const { language } = useLanguage();
+  const projects = getProjects(language);
+
   // 3 cards: 1 real project + 2 placeholders (or more projects when available).
   const totalCards = 3;
   const realProjectsCount = projects.filter(
