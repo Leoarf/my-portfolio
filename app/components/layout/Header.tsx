@@ -147,11 +147,6 @@ export default function Header() {
                     </span>
                     <ThemeToggle />
                   </div>
-                  <div className="mt-4 text-center">
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      © 2024 Leonardo Araújo
-                    </p>
-                  </div>
                 </div>
               </div>
             </motion.div>
