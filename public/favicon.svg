@@ -1,0 +1,20 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" fill="none">
+
+  <!-- Núcleo superior (maior) -->
+  <path d="M150 40C118 40 92 66 92 98C92 130 118 156 150 156C182 156 208 130 208 98C208 66 182 40 150 40Z" stroke="#6B8CFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path>
+
+  <!-- Base inferior (maior, mais larga) -->
+  <path d="M70 240C70 190 105 156 150 156C195 156 230 190 230 240" stroke="#A974FF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path>
+
+  <!-- Círculo central (nó superior maior) -->
+  <circle cx="150" cy="98" r="16" fill="#6B8CFF"></circle>
+
+  <!-- Nós inferiores maiores -->
+  <circle cx="110" cy="240" r="14" fill="#A974FF"></circle>
+  <circle cx="190" cy="240" r="14" fill="#6B8CFF"></circle>
+
+  <!-- Conexões mais grossas -->
+  <path d="M150 98L110 240" stroke="#7EA0FF" stroke-width="14" stroke-linecap="round"></path>
+  <path d="M150 98L190 240" stroke="#B68CFF" stroke-width="14" stroke-linecap="round"></path>
+
+</svg>
