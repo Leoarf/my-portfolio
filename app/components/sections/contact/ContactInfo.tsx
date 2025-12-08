@@ -1,9 +1,27 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { contactInfo, socialLinks } from './constants';
+import { useLanguage } from '../../../context/LanguageContext';
+import { getContactInfo, getSocialLinks } from './constants';
 
 export function ContactInfo() {
+  const { language } = useLanguage();
+  const contactInfo = getContactInfo(language);
+  const socialLinks = getSocialLinks(language);
+
+  const texts = {
+    pt: {
+      contactTitle: 'Informações de Contato',
+      socialTitle: 'Redes Sociais',
+    },
+    en: {
+      contactTitle: 'Contact Information',
+      socialTitle: 'Social Media',
+    },
+  };
+
+  const t = texts[language];
+
   return (
     <div className="space-y-8">
       {/* Contact information */}
@@ -15,7 +33,7 @@ export function ContactInfo() {
         className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
       >
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-          Informações de Contato
+          {t.contactTitle}
         </h3>
         <div className="space-y-4">
           {contactInfo.map((item) => (
@@ -65,7 +83,7 @@ export function ContactInfo() {
         className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
       >
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-          Redes Sociais
+          {t.socialTitle}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {socialLinks.map((social, index) => (
