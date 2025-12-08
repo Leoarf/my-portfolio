@@ -25,7 +25,7 @@ function CardHeader() {
     <div className="flex items-center gap-2 mb-6">
       <Code2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
       <span className="text-lg font-bold text-gray-800 dark:text-gray-200">
-        Meu Stack
+        My Stack
       </span>
     </div>
   );
