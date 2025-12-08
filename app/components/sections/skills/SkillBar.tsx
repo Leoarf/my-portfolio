@@ -9,6 +9,16 @@ interface SkillBarProps {
 }
 
 export function SkillBar({ skill, delay = 0 }: SkillBarProps) {
+  // Mapping cores to specific icons that may have contrast issues
+  const getIconColor = (icon: string) => {
+    // For the Next.js icon (▲) - use black in the light theme and white in the dark theme
+    if (icon === '▲') {
+      return 'text-gray-900 dark:text-white';
+    }
+    // For other icons, keep the default color
+    return 'text-gray-800 dark:text-gray-200';
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -19,7 +29,9 @@ export function SkillBar({ skill, delay = 0 }: SkillBarProps) {
     >
       <div className="flex justify-between items-center mb-2">
         <div className="flex items-center gap-2">
-          <span className="text-lg">{skill.icon}</span>
+          <span className={`text-lg ${getIconColor(skill.icon)}`}>
+            {skill.icon}
+          </span>
           <span className="font-medium text-gray-800 dark:text-gray-200">
             {skill.name}
           </span>
