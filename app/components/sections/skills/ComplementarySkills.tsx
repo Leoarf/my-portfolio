@@ -1,9 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { complementarySkills } from './constants';
+import { useLanguage } from '../../../context/LanguageContext';
+import { getComplementarySkills } from './constants';
 
 export function ComplementarySkills() {
+  const { language } = useLanguage();
+  const complementarySkills = getComplementarySkills(language);
+
+  const titles = {
+    pt: 'Competências Complementares',
+    en: 'Complementary Skills',
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -13,7 +22,7 @@ export function ComplementarySkills() {
       className="mt-16 bg-linear-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-lg"
     >
       <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-        Competências Complementares
+        {titles[language]}
       </h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {complementarySkills.map((skill, index) => (
