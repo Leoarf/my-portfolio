@@ -1,5 +1,3 @@
-const SCREENSHOT_KEY = process.env.NEXT_PUBLIC_SCREENSHOT_MACHINE_KEY || '';
-
 export type Project = {
   id: number;
   title: string;
@@ -30,9 +28,7 @@ export const projects: Project[] = [
     ],
     githubUrl: 'https://github.com/Leoarf/azurio',
     liveUrl: 'https://azurio.vercel.app/',
-    imageUrl: SCREENSHOT_KEY
-      ? `https://api.screenshotmachine.com?key=${SCREENSHOT_KEY}&url=https://azurio.vercel.app&dimension=800x600&device=desktop&delay=2000&cacheLimit=0`
-      : 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    imageUrl: '/projects/azurio.webp',
     status: 'completed',
     featured: true,
   },
