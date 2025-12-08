@@ -60,7 +60,7 @@ function CTAButtons() {
       <motion.a
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        href="#projetos"
+        href="#projects"
         className="px-6 py-3 bg-linear-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all shadow-md"
       >
         Ver Projetos
@@ -69,7 +69,7 @@ function CTAButtons() {
       <motion.a
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        href="#contato"
+        href="#contact"
         className="px-6 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg font-semibold border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-colors shadow-sm"
       >
         Entrar em Contato
