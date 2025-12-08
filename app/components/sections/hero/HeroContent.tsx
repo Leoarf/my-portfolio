@@ -11,7 +11,7 @@ export function HeroContent() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="text-center lg:text-left w-full lg:w-1/2"
+      className="text-center lg:text-left w-full lg:w-1/2 mx-auto lg:mx-0 px-4 sm:px-6 lg:px-0"
     >
       <WelcomeBadge />
       <h1 className="text-4xl md:text-5xl font-bold mb-4">
