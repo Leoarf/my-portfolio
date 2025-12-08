@@ -3,10 +3,11 @@ import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Skills from './components/sections/Skills';
 import Projects from './components/sections/Projects';
+import Contact from './components/sections/Contact';
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen w-full overflow-x-hidden">
       {/* Single background for the entire page */}
       <div className="fixed inset-0 -z-10">
         {/* Base layer */}
@@ -38,12 +39,13 @@ export default function Home() {
         />
       </div>
       {/* Page content */}
-      <div className="relative z-10">
+      <div className="relative z-10 w-full">
         <Header />
         <Hero />
         <About />
         <Skills />
         <Projects />
+        <Contact />
       </div>
     </div>
   );
