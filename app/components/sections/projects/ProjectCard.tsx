@@ -110,7 +110,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </div>
         {/* Links */}
-        <div className="flex items-center justify-between mt-auto">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mt-auto">
           <a
             href={project.githubUrl}
             target="_blank"
