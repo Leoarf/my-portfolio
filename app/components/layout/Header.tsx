@@ -21,13 +21,20 @@ export default function Header() {
 
   // Blocks scrolling when the mobile menu is open.
   useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      html.style.overflow = 'hidden';
+      body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      html.style.overflow = '';
+      body.style.overflow = '';
     }
+
     return () => {
-      document.body.style.overflow = 'unset';
+      html.style.overflow = '';
+      body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
 
