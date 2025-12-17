@@ -8,7 +8,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.23.25-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
-**✨ Portfolio:** [x](x)
+**✨ Portfolio:** [https://portfolio-leoarf.vercel.app/](https://portfolio-leoarf.vercel.app/)
 
 </div>
 
