@@ -7,6 +7,7 @@ import { technologies, socialLinks } from './constants';
 import { HeroTechnologies } from './HeroTechnologies';
 import { HeroSocialLinks } from './HeroSocialLinks';
 import { useLanguage } from '../../../context/LanguageContext';
+import { CVDownloadButton } from '../../ui/CVDownloadButton';
 
 export function HeroContent() {
   const { language } = useLanguage();
@@ -48,7 +49,11 @@ export function HeroContent() {
       </h1>
       <Description text={t.description} />
       <HeroTechnologies technologies={technologies} />
-      <CTAButtons viewProjectsText={t.viewProjects} contactText={t.contact} />
+      <CTAButtons
+        viewProjectsText={t.viewProjects}
+        contactText={t.contact}
+        language={language}
+      />
       <HeroSocialLinks socialLinks={socialLinks} />
     </motion.div>
   );
@@ -81,9 +86,11 @@ function Description({ text }: { text: string }) {
 function CTAButtons({
   viewProjectsText,
   contactText,
+  language,
 }: {
   viewProjectsText: string;
   contactText: string;
+  language: 'pt' | 'en';
 }) {
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
@@ -91,16 +98,17 @@ function CTAButtons({
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         href="#projects"
-        className="px-6 py-3 bg-linear-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all shadow-md"
+        className="w-full sm:w-auto px-6 py-3 bg-linear-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all shadow-md"
       >
         {viewProjectsText}
         <ArrowDown className="h-5 w-5" />
       </motion.a>
+      <CVDownloadButton language={language} />
       <motion.a
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         href="#contact"
-        className="px-6 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg font-semibold border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-colors shadow-sm"
+        className="w-full sm:w-auto px-6 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg font-semibold border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-colors shadow-sm flex items-center justify-center"
       >
         {contactText}
       </motion.a>
